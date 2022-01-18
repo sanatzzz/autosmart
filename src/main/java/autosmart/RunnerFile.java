@@ -4,8 +4,21 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 public class RunnerFile extends RestAssuredTests{
+	
     @Test
     public void test_JUnit() {
-        
+
+    	
+    	addPet();
+    	deletePet();  
+    }
+    
+    @Test
+ public void test_JUnit() {
+
+    	addPet();
+    	deletePet(); 
+    	deleteuser();
+ 
     }
 }

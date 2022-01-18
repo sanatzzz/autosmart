@@ -1,4 +1,5 @@
 package autosmart;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,26 +16,23 @@ public class PatternMatcherAlgo {
 		BufferedReader br = new BufferedReader(fr);
 		StringBuilder sb = new StringBuilder();
 		String line = br.readLine();
-		System.out.println("Reading text file using FileReader");
 		while (line != null) {
 			sb.append(line);
 			line = br.readLine();
 		}
+		br.close();
 		return sb.toString();
 	}
 
-	public ArrayList<String> extractScenarios() throws IOException {
-		String fileName = "C:\\Users\\Sanat\\eclipse-workspace\\autosmart\\BDDs\\Petstore.feature";
-
-		ArrayList<String> scenarios = new ArrayList<String>();
-		String str = readUsingFileReader(fileName);
-		Pattern pattern = Pattern.compile("#Start(.*?)#End", Pattern.DOTALL);
+	public ArrayList<String> extractKeywords(String filepath, String start, String end) throws IOException {
+		ArrayList<String> keywords = new ArrayList<String>();
+		String str = readUsingFileReader(filepath);
+		Pattern pattern = Pattern.compile(start + "(.*?)" + end, Pattern.DOTALL);
 		Matcher matcher = pattern.matcher(str);
 		while (matcher.find()) {
-			scenarios.add(matcher.group(1));
-		//	System.out.println(scenarios);
+			keywords.add(matcher.group(1));
 		}
-		return scenarios;
+		return keywords;
 	}
 
 }
